@@ -1,10 +1,10 @@
 # SwayFX-dotfiles
-Construido en: Fedora Swau (spin)
+Construido en: Fedora Swaw (spin)
 
 Apps importantes
 - SwayFX
 - Waybar
-- Rofi
+- Rofi/Wofi
 - Ghostty Terminal
 - Cmus (Music player)
 - Librewolf (Main Browser)
@@ -24,4 +24,4 @@ Apps importantes
 - Imv
 - brightnessctl
 - Swaylock *No sé usarlo*
-- Dunst »En busca de reemplazarlo por swaync»
+- SwayNC
