@@ -3,6 +3,7 @@ Construido en: Fedora Swaw (spin)
 
 Apps importantes
 - SwayFX
+- Autotiling
 - Waybar
 - Rofi/Wofi
 - Ghostty Terminal
