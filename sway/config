@@ -1,0 +1,318 @@
+# Hi, Aizu/Mashii here, firts of all, this config file is mainly in spanish
+# but I will write important things in English for better understanding
+
+
+# ======================================= Basicos ===========================================
+
+# Configuraciones importantes pero que no supe donde poner, asi que lo dejo al principio
+
+# Important configs that I didn't know where to put it, so I leave it in the begginig
+
+#font
+font pango: Maple Mono 9
+
+
+#For excecute nm-applet
+exec_always nm-applet --indicator
+exec_always autotiling
+#Swaync
+exec swaync
+# Gestos del touchpad / Touchpad Gestures
+    bindgesture swipe:right workspace prev
+    bindgesture swipe:left workspace next
+
+# Lectura de archivos extrenos
+include /etc/sway/config.d/*
+include $HOME/.config/sway/blur.conf
+include $HOME/.config/sway/floating.conf
+# Barra de estado (Normamente waybar) / Status Bar (Normally waybar)
+bar {
+    swaybar_command waybar
+}
+
+
+# ===========================================================================================
+
+
+# ======================================== Variables ========================================
+
+# Apps and basic keybindings I use
+
+# Windows key 
+set $mod Mod4
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# Asignaciones
+set $term ghostty
+set $menu pgrep wofi >/dev/null 2>&1 && killall wofi || wofi --show drun
+set $file_explorer nautilus
+
+
+# =========================== Wallpapaer ====================================================
+
+# Default wallpaper (swaybg)
+output * bg /home/mashii/Pictures/wallpapers/0anime10.png stretch
+
+#Wallpaper (wal)
+#output "*" bg $wallpaper fill
+
+ 
+# ===========================================================================================
+
+
+# =========================== Monitor/pantalla ==============================================
+# Laptop screen config
+output eDP-1 resolution 1920x1080@60.049Hz position 0,0
+
+# External monitor (Old TV) config
+output HDMI-A-1 resolution 1920x1080@60.000Hz position 0,0
+
+# ===========================================================================================
+
+
+# =========================== Bordes y Gaps ================================================= 
+
+# Gaps
+gaps inner 6px
+gaps outer 6px
+
+# Border size
+default_border pixel 4px
+default_floating_border pixel 4px
+
+
+# Color de Bordes
+
+# Border colour         border|background|text |   ind | child border
+
+client.focused          #e67e80 #2d353b #e67e80 #e67e80 #e67e80 
+client.focused_inactive #d3c6aa #232634 #e67e80 #d3c6aa #d3c6aa 
+client.unfocused        #d3c6aa #232634 #e67e80 #d3c6aa #d3c6aa 
+client.urgent           #e5c890 #2d353b #e67e80 #e5c890 #e5c890 
+client.placeholder      #d3c6aa #2d353b #e67e80 #d3c6aa #d3c6aa 
+
+# If you want to use wal
+
+#Border colour - wal
+#client.focused          $color5 $background $foreground $color5 $color5
+#client.unfocused        $color1 $background $foreground $background
+#client.focused_inactive $color2 $background $foreground $background
+#client.urgent           $color6 $background $foreground $color6 $color6
+#client.background       $background
+
+# ===========================================================================================
+
+
+# ============================= Configuracion de Hardware ===================================
+
+# Estos ajustes fueron hechos especificamente para mi laptop: Lenovo Thinkpad T495s, obligatorio cambiarlos segun tu equipo
+
+# The next settings were made for specifically for mi laptop: Lenovo Thinkpad T495s, you must change it according to your device
+#
+input "type:mouse" {
+    click_method button_areas
+    pointer_accel 0
+}
+
+input "type:pointer" {
+    middle_emulation disabled
+}
+
+input "2:14:ETPS/2_Elantech_TrackPoint" {
+    dwt enabled
+    pointer_accel -0.4
+    scroll_factor 0.2
+    scroll_method on_button_down
+    middle_emulation disabled
+}
+
+input "type:touchpad" {
+    tap enabled
+    natural_scroll true
+    click_method clickfinger
+    middle_emulation disabled
+    pointer_accel 0.1
+    drag_lock disabled
+}
+
+
+input type:keyboard {
+    xkb_layout "us"
+    xkb_rules "evdev"
+    xkb_variant "altgr-intl"
+}
+
+
+# Disable paste with the middle click
+#bindsym --whole-window button2 exec head -c 1 /dev/null
+
+
+# ===========================================================================================
+
+# =================================== Binds basico ==========================================
+
+bindsym $mod+Return exec $term
+bindsym $mod+q kill
+bindsym $mod+d exec $menu
+bindsym $mod+e exec $file_explorer
+bindsym $mod+p exec swaylock
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec wlogout
+bindsym $mod+Shift+n exec swaync-client -t -sw
+bindsym $mod+Shift+b exec librewolf
+bindsym $mod+Shift+w exec helium
+
+floating_modifier $mod normal
+
+# Screenshots
+bindsym Print exec grim -g "$(slurp)" - | swappy -f -
+
+
+# ===========================================================================================
+
+# ===================================== Floating apps =======================================
+
+# Apps que prefiero que se ejecuten por defecto en modo flotante
+# Apps that I prefer to excecute in floating mode
+
+for_window [app_id=org.pulseaudio.pavucontrol] floating enable
+for_window [app_id=org.kde.kdeconnect.app] floating enable
+for_window [app_id=blueman-manager] floating enable
+for_window [app_id=nm-connection-editor] floating enable
+for_window [app_id=org.gnome.Calculator] floating enable
+for_window [app_id=org.gnome.Nautilus] floating enable
+for_window [app_id=imv] floating enable
+for_window [app_id=io.github.alainm23.planify] floating enable
+
+# ===========================================================================================
+
+# ==================================== Movimiento ===========================================
+# ¡ADVERTENCIA! yo uso unicamente los atajos tipo vim, no las flechas, tienes que agregarlas por cuenta propia
+
+
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# ===========================================================================================
+
+# ======================================= Workspaces ========================================
+#
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# ===========================================================================================
+
+# ========================= Posicion de las ventanas ========================================
+
+# Division horizontal y vertical 
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+x layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+#
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+#
+# ======================================= Resizing windows ===============================
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+#
+# ==================================== Utilities ============================================
+
+# No toco esto porque lo encuentro innecesario en laptops
+# I don't touch this because I found it unnecesary on laptops
+
+# Teclas para ajustar el volumen
+# Special keys to adjust volume via PulseAudio
+bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+
+# Teclas para ajustar el brillo de la pantalla
+# Special keys to adjust brightness via brightnessctl
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+
+
