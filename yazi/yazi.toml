@@ -1,0 +1,10 @@
+[mgr]
+ratio=[1, 4, 4]
+
+edit = [
+	{ run = "$EDITOR %s", block = true, for = "unix"},
+	{ run = "%EDITOR% %s", block = true, for = "windows" },
+] 
+open = [
+	{ run = "vim %s1", desc = "Open" },
+]
