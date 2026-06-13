@@ -1,0 +1,184 @@
+/* ===== COLORS ===== */
+@define-color bg #191724;
+@define-color bg-tray #1f1d2e;
+
+@define-color fg #fff4d2;
+
+@define-color black #21202e;
+
+@define-color border #fff4d2;
+@define-color border-muted #6e6a86;
+
+@define-color blue #9ccfd8;
+@define-color blue-dark #286983;
+
+@define-color pink #ebbcba;
+
+@define-color green #8ec07c;
+@define-color green-dark #689d68;
+
+@define-color red #ea6962;
+@define-color red-dark #cc241d;
+
+@define-color orange #e78a4e;
+
+@define-color yellow #f6c657;
+@define-color yellow-soft #d8a657;
+
+@define-color gray #555555;
+
+
+/* ===== GLOBAL ===== */
+* {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  min-height: 0;
+  text-shadow: none;
+  transition: none;
+  box-shadow: none;
+}
+
+#custom-media,
+#window,
+#disk,
+#cpu,
+#custom-cpu_temp,
+#custom-cpu_temp.critical,
+#backlight,
+#custom-memory,
+#pulseaudio,
+#pulseaudio.muted,
+#battery,
+#battery.critical,
+#battery.warning,
+#network,
+#clock {
+  padding-right: 3pt;
+}
+
+/* ===== WAYBAR ===== */
+window#waybar {
+  color: @fg;
+  background: @bg;
+  font-family: Geist Mono;
+  font-size: 12pt;
+  font-weight: 900;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  padding: 3pt;
+  margin-left: 10px;
+}
+
+/* ===== WORKSPACES ===== */
+#workspaces button {
+  color: @fg;
+  background: @bg;
+  border: 2pt solid @border;
+  margin-right: 3pt;
+  min-width: 15pt;
+  padding: 0 3.75pt;
+}
+
+#workspaces button:last-child {
+  margin-right: 0;
+}
+
+#workspaces button:hover {
+  color: @pink;
+  border-color: @pink;
+}
+
+#workspaces button.visible,
+#workspaces button.visible:hover,
+#workspaces button.active,
+#workspaces button.active:hover {
+  color: @green;
+  border-color: @green;
+}
+
+#workspaces button.urgent {
+  color: @red;
+  border-color: @red;
+}
+
+/* ===== ROFI ===== */
+/* ===== MODULE BORDERS ===== */
+#window {
+  border-bottom: 2pt solid @pink;
+  margin-right: 3px;
+}
+
+#tray {
+  border-bottom: 2pt solid @border-muted;
+  background: @bg-tray;
+  padding: 0 6pt;
+}
+
+#custom-media {
+  border-bottom: 2pt solid @red;
+}
+
+#backlight {
+  border-bottom: 2pt solid @orange;
+  margin-left: 3px;
+}
+
+#custom-pomodoro {
+  border-bottom: 2pt solid @yellow;
+}
+
+#bluetooth {
+  border-bottom: 2pt solid @blue-dark;
+  margin-left: 3px;
+}
+
+#pulseaudio {
+  border-bottom: 2pt solid @blue;
+}
+
+#pulseaudio.muted {
+  color: @red;
+  border-bottom: 2pt solid @red;
+}
+
+#battery {
+  border-bottom: 2pt solid @green-dark;
+  margin-left: 3px;
+}
+
+#battery.critical,
+#battery.charging.critical {
+  color: @red-dark;
+  border-bottom: 2pt solid @red-dark;
+  margin-left: 3px;
+}
+
+#battery.warning,
+#battery.charging.warning {
+  color: @orange;
+  border-bottom: 2pt solid @orange;
+  margin-left: 3px;
+}
+
+#clock {
+  border-bottom: 2pt solid @green;
+  margin-left: 3px;
+}
+
+#network {
+  border-bottom: 2pt solid @pink;
+  margin-left: 3px;
+}
+
+/* ===== MODE ===== */
+#mode,
+#submap {
+  color: @black;
+  border: 2pt solid @blue-dark;
+  background: @blue;
+  padding: 0 4.5pt;
+}

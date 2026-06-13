@@ -1,0 +1,131 @@
+// -*- mode: jsonc -*-
+{
+    "spacing": 5,
+    "modules-left": [
+        "sway/workspaces"
+    ],
+    "modules-center": [
+        "custom/media"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "bluetooth",
+        "battery",
+        "backlight",
+        "clock",
+	"group/tray-group"
+    ],
+    "include": [
+	    "./scripts/tray-notif.jsonc",
+	    "./scripts/groups.jsonc"
+	],
+    "sway/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十",
+            "active": "",
+            "default": "" 
+        },
+           "persistent-workspaces": {
+             "*": [ 1,2, 3, 4, 5, 6 ]
+           }
+    },
+    "sway/window": {
+        "format": "",
+        "icon": true
+    },
+    "tray": {
+        "icon-size": 14,
+        "spacing": 10
+    },
+    "clock": {
+        "format": "{:%I点:%M分}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y年 %m月 %d日}",
+        "interval": 1,
+        "on-click-right": "flatpak run io.github.alainm23.planify"
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% ⚡︎",
+        "format-full": "{capacity}% ⚡︎",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} ⚡︎",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": "",
+        "format-connected": " {num_connections} connected",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{signalStrength}%  ",
+        "format-ethernet": "{ipaddr}/{cidr} 󰈀 ",
+        "tooltip-format": "{essid}",
+        "format-linked": "{ifname} (No IP)  ",
+        "format-disconnected": "Disconnected ⚠ ",
+        "on-click": "exec nm-connection-editor"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% 🕪  {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "󰝟 {icon} {format_source}",
+        "format-muted": "󰝟 {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": " ",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "phone": "",
+            "portable": "", "car": "", "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/media": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "kitty -e cmus": "🎜",
+            "firefox": "",
+            "vlc": "󰕼",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources folder
+        "on-click": "playerctl play-pause",
+        "on-double-click": "playerctl next",
+        "on-triple-click": "playerctl previous"
+    },
+    "backlight": {
+    // "device": "acpi_video1",
+    "format": "{percent}% ☀",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "tooltip": true,
+    "on-click": "exec wlsunset",
+    "on-click-right": "pkil wlsunset"
+    }
+   
+}
+
